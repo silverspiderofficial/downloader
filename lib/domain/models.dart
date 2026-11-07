@@ -118,17 +118,48 @@ class MediaInfo {
   final String? liveStatus;
 }
 
-enum JobState { queued, running, paused, waitingNetwork, completed, failed, canceled }
+/// مقدار `wire` همان نام enum در Kotlin است؛ صریح نوشته شده تا مبهم‌سازی Dart روی آن اثری نگذارد.
+enum JobState {
+  queued('QUEUED'),
+  running('RUNNING'),
+  paused('PAUSED'),
+  waitingNetwork('WAITING_NETWORK'),
+  completed('COMPLETED'),
+  failed('FAILED'),
+  canceled('CANCELED');
 
-enum JobPhase { preparing, downloading, merging, embedding, publishing, done }
+  const JobState(this.wire);
+  final String wire;
+}
 
-enum WaitReason { none, retryBackoff, scheduled, noNetwork, wifiRequired, lowResources }
+enum JobPhase {
+  preparing('PREPARING'),
+  downloading('DOWNLOADING'),
+  merging('MERGING'),
+  embedding('EMBEDDING'),
+  publishing('PUBLISHING'),
+  done('DONE');
 
-T _enumFrom<T extends Enum>(List<T> values, String? raw, T fallback) {
+  const JobPhase(this.wire);
+  final String wire;
+}
+
+enum WaitReason {
+  none('NONE'),
+  retryBackoff('RETRY_BACKOFF'),
+  scheduled('SCHEDULED'),
+  noNetwork('NO_NETWORK'),
+  wifiRequired('WIFI_REQUIRED'),
+  lowResources('LOW_RESOURCES');
+
+  const WaitReason(this.wire);
+  final String wire;
+}
+
+T _enumFrom<T>(List<T> values, String Function(T) wire, String? raw, T fallback) {
   if (raw == null) return fallback;
-  final key = raw.toLowerCase().replaceAll('_', '');
   for (final v in values) {
-    if (v.name.toLowerCase() == key) return v;
+    if (wire(v) == raw) return v;
   }
   return fallback;
 }
@@ -201,9 +232,9 @@ class DownloadJob {
     thumbnail: (j['thumbnail'] ?? '') as String,
     formatLabel: (j['formatLabel'] ?? '') as String,
     stage: (j['stage'] ?? 'DOWNLOAD') as String,
-    state: _enumFrom(JobState.values, j['state'] as String?, JobState.queued),
-    phase: _enumFrom(JobPhase.values, j['phase'] as String?, JobPhase.preparing),
-    waitReason: _enumFrom(WaitReason.values, j['waitReason'] as String?, WaitReason.none),
+    state: _enumFrom(JobState.values, (v) => v.wire, j['state'] as String?, JobState.queued),
+    phase: _enumFrom(JobPhase.values, (v) => v.wire, j['phase'] as String?, JobPhase.preparing),
+    waitReason: _enumFrom(WaitReason.values, (v) => v.wire, j['waitReason'] as String?, WaitReason.none),
     progress: _d(j['progress']),
     downloadedBytes: _i(j['downloadedBytes']),
     totalBytes: _i(j['totalBytes']),

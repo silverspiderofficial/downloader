@@ -50,9 +50,12 @@ android {
             } else {
                 signingConfigs.getByName("debug")
             }
-            // کد متن‌باز و بدون مبهم‌سازی (بخش ۱۰ مشخصات)
-            isMinifyEnabled = false
-            isShrinkResources = false
+            // سخت‌سازی نسخهٔ release (قاعدهٔ امنیتی علی، ۲۰۲۶-۱۱-۰۷): کوچک‌سازی و مبهم‌سازی کد با R8.
+            // کد منبع همچنان کامل در مخزن است.
+            isMinifyEnabled = true
+            isShrinkResources = true
+            isDebuggable = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
 
@@ -84,6 +87,12 @@ dependencies {
     implementation("androidx.core:core-ktx:1.15.0")
 
     testImplementation("junit:junit:4.13.2")
+}
+
+tasks.withType<Test>().configureEach {
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
 }
 
 flutter {

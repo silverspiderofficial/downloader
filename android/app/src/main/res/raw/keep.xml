@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- فایل موتور yt-dlp داخل کتابخانه نباید با کوچک‌سازی منابع حذف شود -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@raw/ytdlp,@drawable/ic_stat_download,@xml/file_paths" />

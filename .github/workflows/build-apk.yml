@@ -64,6 +64,7 @@ jobs:
       - name: Build per-ABI APKs
         run: >
           flutter build apk --release --split-per-abi
+          --obfuscate --split-debug-info=build/symbols
           --target-platform android-arm,android-arm64,android-x64
           --build-name "$BUILD_NAME" --build-number "$BUILD_NUMBER"
 
@@ -78,6 +79,7 @@ jobs:
       - name: Build universal APK
         run: >
           flutter build apk --release
+          --obfuscate --split-debug-info=build/symbols
           --target-platform android-arm,android-arm64,android-x64
           --build-name "$BUILD_NAME" --build-number "$BUILD_NUMBER"
 
@@ -98,6 +100,15 @@ jobs:
         with:
           name: downloader-apks-${{ env.BUILD_NAME }}
           path: dist/*
+
+      # نمادهای مبهم‌سازی Dart فقط به‌صورت artifact (نه در Release و نه در APK)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: debug-symbols-${{ env.BUILD_NAME }}
+          path: |
+            build/symbols
+            build/app/outputs/mapping/release/mapping.txt
+          retention-days: 90
 
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2

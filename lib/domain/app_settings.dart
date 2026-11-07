@@ -5,7 +5,14 @@ import 'dart:convert';
 
 import 'format_selection.dart';
 
-enum AppThemeMode { system, light, dark }
+enum AppThemeMode {
+  system('system'),
+  light('light'),
+  dark('dark');
+
+  const AppThemeMode(this.key);
+  final String key;
+}
 
 class AppSettings {
   const AppSettings({
@@ -79,9 +86,9 @@ class AppSettings {
   );
 
   Map<String, Object> toMap() => {
-    'themeMode': themeMode.name,
-    'defaultQuality': defaultQuality.name,
-    'container': container.name,
+    'themeMode': themeMode.key,
+    'defaultQuality': defaultQuality.key,
+    'container': container.key,
     'embedSubs': embedSubs,
     'useAria2c': useAria2c,
     'maxConcurrent': maxConcurrent,
@@ -96,8 +103,8 @@ class AppSettings {
     'onboardingDone': onboardingDone,
   };
 
-  static T _enum<T extends Enum>(List<T> values, Object? raw, T def) =>
-      values.firstWhere((v) => v.name == raw, orElse: () => def);
+  static T _enum<T>(List<T> values, String Function(T) key, Object? raw, T def) =>
+      values.firstWhere((v) => key(v) == raw, orElse: () => def);
 
   factory AppSettings.fromMap(Map<String, Object?> m) {
     const d = AppSettings();
@@ -107,9 +114,9 @@ class AppSettings {
     }
 
     return AppSettings(
-      themeMode: _enum(AppThemeMode.values, m['themeMode'], d.themeMode),
-      defaultQuality: _enum(DefaultQuality.values, m['defaultQuality'], d.defaultQuality),
-      container: _enum(MergeContainer.values, m['container'], d.container),
+      themeMode: _enum(AppThemeMode.values, (v) => v.key, m['themeMode'], d.themeMode),
+      defaultQuality: _enum(DefaultQuality.values, (v) => v.key, m['defaultQuality'], d.defaultQuality),
+      container: _enum(MergeContainer.values, (v) => v.key, m['container'], d.container),
       embedSubs: pick('embedSubs', d.embedSubs),
       useAria2c: pick('useAria2c', d.useAria2c),
       maxConcurrent: pick('maxConcurrent', d.maxConcurrent).clamp(1, 10),

@@ -97,7 +97,7 @@ class EngineManager(private val ctx: Context, private val repo: SqliteJobReposit
             .addOption("--cache-dir", File(ctx.cacheDir, "yt-dlp-cache").absolutePath)
         engineLock.readLock().lock()
         try {
-            val resp = YoutubeDL.execute(req, "analyze-$requestId", null)
+            val resp = YoutubeDL.execute(req, "analyze-$requestId-${System.nanoTime()}", null)
             val out = File(dir, "a-$requestId-${System.currentTimeMillis()}.json")
             out.writeText(resp.out)
             return JSONObject().put("ok", true).put("path", out.absolutePath)

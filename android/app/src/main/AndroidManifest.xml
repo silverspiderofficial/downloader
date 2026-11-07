@@ -20,12 +20,16 @@
     <!-- مجوزهایی که ممکن است کتابخانه‌ها اضافه کنند حذف می‌شوند -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" tools:node="remove" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" tools:node="remove" />
+    <!-- مجوز داخلی androidx.core برای گیرنده‌های پویا؛ اپ از آن استفاده نمی‌کند -->
+    <permission android:name="${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" tools:node="remove" />
+    <uses-permission android:name="${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" tools:node="remove" />
 
     <application
         android:label="دانلودر همه‌کاره"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:allowBackup="false"
+        android:usesCleartextTraffic="false"
         tools:targetApi="36">
         <activity
             android:name=".MainActivity"

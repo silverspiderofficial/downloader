@@ -79,7 +79,9 @@ class ManualExecutor : Executor {
 
     fun runAll(max: Int = 1000) {
         var n = 0
-        while (runNext() && n++ < max) Unit
+        while (n++ < max && runNext()) {
+            // اجرای کار بعدی
+        }
     }
 }
 

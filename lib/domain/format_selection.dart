@@ -3,9 +3,24 @@ library;
 
 import 'models.dart';
 
-enum DefaultQuality { best, max1080, ask }
+enum DefaultQuality {
+  best('best'),
+  max1080('max1080'),
+  ask('ask');
 
-enum MergeContainer { mp4OrMkv, mkv }
+  const DefaultQuality(this.key);
+
+  /// کلید ذخیره‌سازی ثابت (مستقل از مبهم‌سازی)
+  final String key;
+}
+
+enum MergeContainer {
+  mp4OrMkv('mp4OrMkv'),
+  mkv('mkv');
+
+  const MergeContainer(this.key);
+  final String key;
+}
 
 extension MergeContainerX on MergeContainer {
   String get ytdlpValue => this == MergeContainer.mkv ? 'mkv' : 'mp4/mkv';
