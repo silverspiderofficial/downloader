@@ -1,0 +1,27 @@
+{
+  "id": "abc123XYZ00",
+  "title": "نمونهٔ ویدیو | Sample Video",
+  "thumbnail": "https://i.ytimg.com/vi/abc123XYZ00/maxresdefault.jpg",
+  "duration": 212,
+  "uploader": "Sample Channel",
+  "extractor": "youtube",
+  "extractor_key": "Youtube",
+  "webpage_url": "https://www.youtube.com/watch?v=abc123XYZ00",
+  "live_status": "not_live",
+  "subtitles": {"en": [{"ext": "vtt"}], "fa": [{"ext": "vtt"}], "live_chat": [{"ext": "json"}]},
+  "automatic_captions": {"de": [{"ext": "vtt"}]},
+  "formats": [
+    {"format_id": "sb0", "ext": "mhtml", "format_note": "storyboard", "vcodec": "none", "acodec": "none"},
+    {"format_id": "139", "ext": "m4a", "vcodec": "none", "acodec": "mp4a.40.5", "abr": 48.8, "filesize": 1300000},
+    {"format_id": "140", "ext": "m4a", "vcodec": "none", "acodec": "mp4a.40.2", "abr": 129.5, "filesize": 3433000},
+    {"format_id": "251", "ext": "webm", "vcodec": "none", "acodec": "opus", "abr": 135.2, "filesize": 3500000},
+    {"format_id": "18", "ext": "mp4", "vcodec": "avc1.42001E", "acodec": "mp4a.40.2", "height": 360, "width": 640, "fps": 30, "tbr": 500, "filesize_approx": 13250000},
+    {"format_id": "134", "ext": "mp4", "vcodec": "avc1.4d401e", "acodec": "none", "height": 360, "width": 640, "fps": 30, "tbr": 300, "filesize": 7900000},
+    {"format_id": "137", "ext": "mp4", "vcodec": "avc1.640028", "acodec": "none", "height": 1080, "width": 1920, "fps": 30, "tbr": 4400, "filesize": 116000000},
+    {"format_id": "299", "ext": "mp4", "vcodec": "avc1.64002a", "acodec": "none", "height": 1080, "width": 1920, "fps": 60, "tbr": 6000},
+    {"format_id": "248", "ext": "webm", "vcodec": "vp9", "acodec": "none", "height": 1080, "width": 1920, "fps": 30, "tbr": 2600, "filesize": 70000000},
+    {"format_id": "337", "ext": "webm", "vcodec": "vp09.02.51.10", "acodec": "none", "height": 2160, "width": 3840, "fps": 60, "dynamic_range": "HDR10", "tbr": 30000, "filesize": 800000000},
+    {"format_id": "313", "ext": "webm", "vcodec": "vp9", "acodec": "none", "height": 2160, "width": 3840, "fps": 30, "dynamic_range": "SDR", "tbr": 18000, "filesize": 480000000},
+    {"format_id": "drm1", "ext": "mp4", "vcodec": "avc1", "acodec": "none", "height": 1440, "has_drm": true}
+  ]
+}

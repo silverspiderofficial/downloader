@@ -1,0 +1,16 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - build/**
+    - android/**
+  language:
+    strict-casts: true
+
+linter:
+  rules:
+    - prefer_single_quotes
+    - avoid_print
+    - always_declare_return_types
+    - prefer_final_locals
+    - unawaited_futures

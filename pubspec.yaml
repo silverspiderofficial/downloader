@@ -1,0 +1,31 @@
+name: downloader
+description: "دانلودر همه‌کاره: دانلود ویدیو و صدا روی خود گوشی با yt-dlp، FFmpeg و aria2c (GPL-3.0)."
+publish_to: 'none'
+
+# شمارهٔ ساخت در CI با --build-number از شمارهٔ اجرای GitHub Actions جایگزین می‌شود.
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.13.7
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_riverpod: ^3.5.0
+  shared_preferences: ^2.5.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: Vazirmatn
+      fonts:
+        - asset: assets/fonts/Vazirmatn-Regular.ttf
+        - asset: assets/fonts/Vazirmatn-Bold.ttf
+          weight: 700
